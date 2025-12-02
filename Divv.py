@@ -38,7 +38,7 @@ input_data = pd.DataFrame([[Pregnancies,Glucose,BloodPressure,Insulin,BMI,Diabet
 # Make a prediction
 # Make a prediction
 if st.button("Diabetes Prediction"):
-    prediction = predict_Diabetes_prediction(input_data)
+    prediction = Diabetes_prediction(input_data)
     if prediction[0] == 0:
         st.write("Predicted Diabetes: 0 (No significant delay expected)")
     else:

@@ -8,7 +8,7 @@ filename = r'Logistic_Model.sav'
 loaded_model = joblib.load(open(filename, 'rb'))
 
 # Define the correct column names
-columns = ['Pregnacies', 'Glucose', 'BloodPressure', 'Insulin', 'BMI', 'DiabetesPedigreeFunction',
+columns = ['Pregnacies', 'Glucose', 'BloodPressure','SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction',
            'Age']
 
 # Define the prediction function
@@ -27,13 +27,14 @@ st.write("Please provide the following information:")
 Pregnancies = st.number_input("Pregnancies", min_value=0.0)
 Glucose = st.number_input("Glucose", min_value=1, max_value=5)
 BloodPressure = st.number_input("BloodPressure", min_value=1, max_value=5)
+SkinThickness=st.number_input("SkinThickness", min_value=1, max_value=5)
 Insulin = st.number_input("Insulin", min_value=1)
 BMI = st.number_input("BMI", min_value=0.0)
 DiabetesPredictionFunction= st.number_input("DiabetesPredictionFunction", min_value=0)
 Age = st.number_input("Age", min_value=0.0)
 
 # Create a dataframe with the user input
-input_data = pd.DataFrame([[Pregnancies,Glucose,BloodPressure,Insulin,BMI,DiabetesPredictionFunction,Age]], columns=columns)
+input_data = pd.DataFrame([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPredictionFunction,Age]], columns=columns)
 
 # Make a prediction
 # Make a prediction

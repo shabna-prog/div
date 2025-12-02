@@ -18,8 +18,8 @@ def Diabetes_prediction(features):
     """
     prediction = loaded_model.predict(features)
     return prediction
-print("Model expects:", loaded_model.n_features_in_)
-print("You passed:", features.shape[1])
+    print("Model expects:", loaded_model.n_features_in_)
+    print("You passed:", features.shape[1])
 
 # Create the Streamlit app
 st.title("Diabetes Prediction")

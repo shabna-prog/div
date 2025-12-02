@@ -18,8 +18,7 @@ def Diabetes_prediction(features):
     """
     prediction = loaded_model.predict(features)
     return prediction
-    print("Model expects:", loaded_model.n_features_in_)
-    print("You passed:", features.shape[1])
+
 
 # Create the Streamlit app
 st.title("Diabetes Prediction")
@@ -37,7 +36,8 @@ Age = st.number_input("Age", min_value=0.0)
 
 # Create a dataframe with the user input
 input_data = pd.DataFrame([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPredictionFunction,Age]], columns=columns)
-
+print("Model expects:", loaded_model.n_features_in_)
+print("You passed:", features.shape[1])
 # Make a prediction
 # Make a prediction
 if st.button("Diabetes Prediction"):

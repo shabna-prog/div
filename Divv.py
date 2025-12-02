@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import joblib
@@ -7,43 +6,53 @@ import joblib
 filename = r'Logistic_Model.sav'
 loaded_model = joblib.load(open(filename, 'rb'))
 
-# Define the correct column names
-columns = ['Pregnacies', 'Glucose', 'BloodPressure','SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction',
-           'Age']
+# Correct column names (must match training EXACTLY)
+columns = [
+    "Pregnancies",
+    "Glucose",
+    "BloodPressure",
+    "SkinThickness",
+    "Insulin",
+    "BMI",
+    "DiabetesPedigreeFunction",
+    "Age"
+]
 
-# Define the prediction function
+# Prediction function
 def Diabetes_prediction(features):
-    """
-    Predicts the diabetes prediciton based on input features.
-    """
     prediction = loaded_model.predict(features)
     return prediction
 
-
-# Create the Streamlit app
+# Streamlit UI
 st.title("Diabetes Prediction")
 
-# Get user input
 st.write("Please provide the following information:")
-Pregnancies = st.number_input("Pregnancies", min_value=0.0)
-Glucose = st.number_input("Glucose", min_value=1, max_value=5)
-BloodPressure = st.number_input("BloodPressure", min_value=1, max_value=5)
-SkinThickness=st.number_input("SkinThickness", min_value=1, max_value=5)
-Insulin = st.number_input("Insulin", min_value=1)
-BMI = st.number_input("BMI", min_value=0.0)
-DiabetesPredictionFunction= st.number_input("DiabetesPredictionFunction", min_value=0)
-Age = st.number_input("Age", min_value=0.0)
 
-# Create a dataframe with the user input
-input_data = pd.DataFrame([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPredictionFunction,Age]], columns=columns)
-print("Model expects:", loaded_model.n_features_in_)
-print("You passed:", features.shape[1])
-# Make a prediction
-# Make a prediction
+Pregnancies = st.number_input("Pregnancies", min_value=0)
+Glucose = st.number_input("Glucose", min_value=0)
+BloodPressure = st.number_input("BloodPressure", min_value=0)
+SkinThickness = st.number_input("SkinThickness", min_value=0)
+Insulin = st.number_input("Insulin", min_value=0)
+BMI = st.number_input("BMI", min_value=0.0)
+DiabetesPedigreeFunction = st.number_input("Diabetes Pedigree Function", min_value=0.0)
+Age = st.number_input("Age", min_value=0)
+
+# Create dataframe
+input_data = pd.DataFrame(
+    [[Pregnancies, Glucose, BloodPressure, SkinThickness,
+      Insulin, BMI, DiabetesPedigreeFunction, Age]],
+    columns=columns
+)
+
+# Debug info
+st.write("Model expects:", loaded_model.n_features_in_)
+st.write("You passed:", input_data.shape[1])
+
+# Prediction
 if st.button("Diabetes Prediction"):
     prediction = Diabetes_prediction(input_data)
     if prediction[0] == 0:
-        st.write("Predicted Diabetes: 0 (No significant delay expected)")
+        st.write("Predicted Diabetes: 0 (No diabetes)")
     else:
-        st.write("Predicted Diabetes: 1 (Delay expected)")
-             
+        st.write("Predicted Diabetes: 1 (Diabetes predicted)")
+

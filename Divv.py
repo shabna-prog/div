@@ -43,4 +43,5 @@ if st.button("Diabetes Prediction"):
     if prediction[0] == 0:
         st.write("Predicted Diabetes: 0 (No significant delay expected)")
     else:
-        st.write("Predicted Diabetes: 1 (Delay expected)")https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html
+        st.write("Predicted Diabetes: 1 (Delay expected)")
+             

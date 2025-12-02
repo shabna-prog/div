@@ -8,8 +8,7 @@ filename = r'Logistic_Model.sav'
 loaded_model = joblib.load(open(filename, 'rb'))
 
 # Define the correct column names
-columns = ['Pregnacies', 'Glucose', 'BloodPressure',
-           'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction',
+columns = ['Pregnacies', 'Glucose', 'BloodPressure', 'Insulin', 'BMI', 'DiabetesPedigreeFunction',
            'Age']
 
 # Define the prediction function
